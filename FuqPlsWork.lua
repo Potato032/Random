@@ -188,17 +188,15 @@ Spawner.runEntity = function(entityTable)
     entityModel.Parent = workspace
     task.spawn(entityTable.Debug.OnEntitySpawned)
     local spawn = Instance.new("Sound")
-spawn.Parent = entityModel.PrimaryPart
+spawn.Parent = workspace
 spawn.Name = "ReboundSpawn"
 spawn.SoundId = "rbxassetid://9114221327"
-spawn.Volume = 3
-spawn.RollOffMaxDistance = 10000
-spawn.RollOffMinDistance = 450
+spawn.Volume = 4
 spawn:Play()
     local move = GetGitSound("https://github.com/Brololto/Reboundmoving/blob/main/Screen_Recording_20230404-140647_Chrome%20(online-audio-converter.com).mp3?raw=true","ReboundMovement_Lol")
     move.Parent = entityModel.PrimaryPart
     move.Name = "ReboundMoving"
-    move.Volume = 3.1
+    move.Volume = 4
 	move:Play()
 
     -- Mute entity on spawn
