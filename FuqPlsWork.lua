@@ -191,7 +191,7 @@ Spawner.runEntity = function(entityTable)
 spawn.Parent = entityModel.PrimaryPart
 spawn.Name = "ReboundSpawn"
 spawn.SoundId = "rbxassetid://9114221327"
-spawn.Volume = 0
+spawn.Volume = 3
 spawn.RollOffMaxDistance = 10000
 spawn.RollOffMinDistance = 450
 spawn:Play()
