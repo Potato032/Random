@@ -387,7 +387,6 @@
          --[[ on activated ]]-- 
 
          tool.Activated:Connect(function() task.defer(data.Debug.OnActivated); end); 
-         tool:Destroy()
 
 
   
