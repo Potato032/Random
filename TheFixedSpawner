@@ -177,7 +177,31 @@
  end 
 
   
+-- Movement 
 
+  
+
+     local DelayTime = task.wait(entityTable.Config.DelayTime) 
+
+  
+
+     local enteredRooms = {} 
+
+  
+
+     entityConnections.movementTick = RS.Stepped:Connect(function() 
+
+         if entityModel.Parent and not entityModel:GetAttribute("NoAI") then 
+
+             local entityPos = entityModel.PrimaryPart.Position 
+
+             local rootPos = getPlayerRoot().Position 
+
+             local floorRay = FindPartOnRayWithIgnoreList(workspace, Ray.new(entityPos, Vector3.new(0, -10, 0)), {entityModel, Char}) 
+
+             local playerInSight = FindPartOnRayWithIgnoreList(workspace, Ray.new(entityPos, rootPos - entityPos), {entityModel, Char}) == nil 
+
+              
  -- Functions 
 
   
@@ -196,7 +220,9 @@
 
   
 
-     config.Speed = StaticRushSpeed / 100 * config.Speed 
+     config.Speed = StaticRushSpeed / 100 * 1
+wait(DelayTime)
+ config.Speed = StaticRushSpeed / 100 * config.Speed
 
   
 
@@ -234,50 +260,7 @@
 
   
 
-             -- EntityTable 
-
-  
-
-             local entityTable = { 
-
-                 Model = entityModel, 
-
-                 Config = config, 
-
-                 Debug = { 
-
-                     OnEntitySpawned = function() end, 
-
-                     OnEntityDespawned = function() end, 
-
-                     OnEntityStartMoving = function() end, 
-
-                     OnEntityFinishedRebound = function() end, 
-
-                     OnEntityEnteredRoom = function() end, 
-
-                     OnLookAtEntity = function() end, 
-
-                     OnDeath = function() end 
-
-                 } 
-
-             } 
-
-  
-
-             return entityTable 
-
-         end 
-
-     end 
-
- end 
-
-  
-
- Spawner.runEntity = function(entityTable) 
-
+            
      -- Nodes 
 
   
@@ -390,76 +373,6 @@
 
      end 
 
-  
-
-     -- Movement 
-
-  
-
-     task.wait(entityTable.Config.DelayTime) 
-
- function dragEntity(entityModel, pos, speed) 
-
-     local entityConnections = EntityConnections[entityModel] 
-
-  
-
-     if entityConnections.movementNode then 
-
-         entityConnections.movementNode:Disconnect() 
-
-     end 
-
-  
-
-     entityConnections.movementNode = RS.Stepped:Connect(function(_, step) 
-
-         if entityModel.Parent and not entityModel:GetAttribute("NoAI") then 
-
-             local rootPos = entityModel.PrimaryPart.Position 
-
-             local diff = Vector3.new(pos.X, pos.Y, pos.Z) - rootPos 
-
-  
-
-             if diff.Magnitude > 0.1 then 
-
-                 entityModel:PivotTo(CFrame.new(rootPos + diff.Unit * math.min(step * speed, diff.Magnitude))) 
-
-             else 
-
-                 entityConnections.movementNode:Disconnect() 
-
-             end 
-
-         end 
-
-     end) 
-
-  
-
-     repeat task.wait(0.7) until not entityConnections.movementNode.Connected 
-
- end 
-
-
-     local enteredRooms = {} 
-
-  
-
-     entityConnections.movementTick = RS.Stepped:Connect(function() 
-
-         if entityModel.Parent and not entityModel:GetAttribute("NoAI") then 
-
-             local entityPos = entityModel.PrimaryPart.Position 
-
-             local rootPos = getPlayerRoot().Position 
-
-             local floorRay = FindPartOnRayWithIgnoreList(workspace, Ray.new(entityPos, Vector3.new(0, -10, 0)), {entityModel, Char}) 
-
-             local playerInSight = FindPartOnRayWithIgnoreList(workspace, Ray.new(entityPos, rootPos - entityPos), {entityModel, Char}) == nil 
-
-              
 
              -- Entered room 
 
