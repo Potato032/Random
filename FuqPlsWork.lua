@@ -342,6 +342,18 @@ wait(0.2)
     end)
 
     task.spawn(entityTable.Debug.OnEntityStartMoving)
+    local spawn = Instance.new("Sound")
+spawn.Parent = entityModel.PrimaryPart
+spawn.Name = "ReboundSpawn"
+spawn.SoundId = "rbxassetid://9114221327"
+spawn.Volume = 4
+spawn:Play()
+wait(0.2)
+    local move = GetGitSound("https://github.com/Brololto/Reboundmoving/blob/main/Screen_Recording_20230404-140647_Chrome%20(online-audio-converter.com).mp3?raw=true","ReboundMovement_Lol")
+    move.Parent = entityModel.PrimaryPart
+    move.Name = "ReboundMoving"
+    move.Volume = 4
+	move:Play()
 
     -- Cycles
 
