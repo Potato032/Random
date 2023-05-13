@@ -232,10 +232,6 @@
 
              entityModel:SetAttribute("IsCustomEntity", true) 
 
-             entityModel:SetAttribute("NoAI", false) 
-             
-             
-
   
 
              -- EntityTable 
@@ -400,7 +396,25 @@
 
   
 
-     task.wait(entityTable.Config.DelayTime) 
+     task.wait(entityTable.Config.DelayTime)
+
+             
+coroutine.wrap(function()
+
+while entityModel ~= nil do
+
+wait(15)
+
+if entityModel.PrimaryPart.Magnitude == 0 then
+
+entityModel:Destroy()
+
+end
+
+end
+
+end)()
+
 
  function dragEntity(entityModel, pos, speed) 
 
