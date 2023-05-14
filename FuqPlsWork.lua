@@ -187,9 +187,9 @@ Spawner.runEntity = function(entityTable)
     
     entityModel:PivotTo(nodes[startNodeIndex].CFrame * CFrame.new(0, 0, startNodeOffset) + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0))
     entityModel.Parent = workspace
-    task.spawn(entityTable.Debug.OnEntityStartMoving)
+    task.spawn(entityTable.Debug.OnEntitySpawned)
     local spawn = Instance.new("Sound")
-spawn.Parent = entityModel.PrimaryPart
+spawn.Parent = workspace
 spawn.Name = "ReboundSpawn"
 spawn.SoundId = "rbxassetid://9114221327"
 spawn.Volume = 4
