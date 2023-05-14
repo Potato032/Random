@@ -119,6 +119,7 @@ Spawner.createEntity = function(config)
         
         if entityModel.PrimaryPart then
             entityModel.PrimaryPart.Anchored = true
+entityModel.PrimaryPart.CanCollide = false
             
             if config.CustomName then
                 entityModel.Name = config.CustomName
@@ -186,7 +187,7 @@ Spawner.runEntity = function(entityTable)
     
     entityModel:PivotTo(nodes[startNodeIndex].CFrame * CFrame.new(0, 0, startNodeOffset) + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0))
     entityModel.Parent = workspace
-    task.spawn(entityTable.Debug.OnEntitySpawned)
+    task.spawn(entityTable.Debug.OnEntityStartMoving)
     local spawn = Instance.new("Sound")
 spawn.Parent = workspace
 spawn.Name = "ReboundSpawn"
