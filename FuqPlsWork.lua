@@ -189,7 +189,7 @@ Spawner.runEntity = function(entityTable)
     entityModel.Parent = workspace
     task.spawn(entityTable.Debug.OnEntityStartMoving)
     local spawn = Instance.new("Sound")
-spawn.Parent = workspace
+spawn.Parent = entityModel.PrimaryPart
 spawn.Name = "ReboundSpawn"
 spawn.SoundId = "rbxassetid://9114221327"
 spawn.Volume = 4
@@ -200,7 +200,6 @@ wait(0.2)
     move.Name = "ReboundMoving"
     move.Volume = 4
 	move:Play()
-task.spawn(entityTable.Debug.OnEntitySpawned) 
 
 
     -- Mute entity on spawn
