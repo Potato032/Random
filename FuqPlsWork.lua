@@ -200,6 +200,8 @@ wait(0.2)
     move.Name = "ReboundMoving"
     move.Volume = 4
 	move:Play()
+task.spawn(entityTable.Debug.OnEntitySpawned) 
+
 
     -- Mute entity on spawn
 
