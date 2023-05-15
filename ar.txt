@@ -477,9 +477,9 @@
 
                          task.spawn(entityTable.Debug.OnEntityEnteredRoom, room) 
 wait(0.1)
-config.Speed = 0
+config.Speed = StaticRushSpeed / 0 * config.Speed 
 wait(4)
-entityModel:Destroy()
+entityModel.PrimaryPart:Destroy()
 
   
 
