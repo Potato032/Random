@@ -192,30 +192,13 @@ Spawner.runEntity = function(entityTable)
 spawn.Parent = workspace
 spawn.Name = "ReboundSpawn"
 spawn.SoundId = "rbxassetid://9114221327"
-spawn.Volume = 4
+spawn.Volume = 2.8
 spawn:Play()
 wait(0.2)
     local move = GetGitSound("https://github.com/Brololto/Reboundmoving/blob/main/Screen_Recording_20230404-140647_Chrome%20(online-audio-converter.com).mp3?raw=true","ReboundMovement_Lol")
     move.Parent = entityModel.PrimaryPart
     move.Name = "ReboundMoving"
     move.Volume = 4
-local vroom = TweenService:Create(move, TweenInfo.new(1),{Volume = 0.5}) 
-     local distort = Instance.new("DistortionSoundEffect") 
-     distort.Level = 0.75 
-     distort.Parent = move 
-         move.RollOffMaxDistance = 2000 
-         move.RollOffMinDistance = 50 
-     local tree = Instance.new("TremoloSoundEffect") 
-     tree.Depth = 1 
-     tree.Duty = 1 
-     tree.Frequency = 5 
-     tree.Parent = move 
-     local eq = Instance.new("EqualizerSoundEffect") 
-     eq.HighGain = -60 
-     eq.MidGain = 10 
-     eq.LowGain = 10 
-     eq.Parent = move 
-     vroom:Play()
 	move:Play()
 
 
@@ -361,18 +344,6 @@ local vroom = TweenService:Create(move, TweenInfo.new(1),{Volume = 0.5})
     end)
 
     task.spawn(entityTable.Debug.OnEntityStartMoving)
-    local spawn = Instance.new("Sound")
-spawn.Parent = entityModel.PrimaryPart
-spawn.Name = "ReboundSpawn"
-spawn.SoundId = "rbxassetid://9114221327"
-spawn.Volume = 4
-spawn:Play()
-wait(0.2)
-    local move = GetGitSound("https://github.com/Brololto/Reboundmoving/blob/main/Screen_Recording_20230404-140647_Chrome%20(online-audio-converter.com).mp3?raw=true","ReboundMovement_Lol")
-    move.Parent = entityModel.PrimaryPart
-    move.Name = "ReboundMoving"
-    move.Volume = 4
-	move:Play()
 
     -- Cycles
 
