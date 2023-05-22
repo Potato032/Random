@@ -198,7 +198,7 @@ wait(0.2)
     local move = GetGitSound("https://github.com/Brololto/Reboundmoving/blob/main/Screen_Recording_20230404-140647_Chrome%20(online-audio-converter.com).mp3?raw=true","ReboundMovement_Lol")
     move.Parent = entityModel.PrimaryPart
     move.Name = "ReboundMoving"
-    move.Volume = 5
+    move.Volume = 7.3
 	move:Play()
 
 
