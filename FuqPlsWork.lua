@@ -192,7 +192,7 @@ Spawner.runEntity = function(entityTable)
 spawn.Parent = workspace
 spawn.Name = "ReboundSpawn"
 spawn.SoundId = "rbxassetid://9114221327"
-spawn.Volume = 2.8
+spawn.Volume = 0
 spawn:Play()
 wait(0.2)
     local move = GetGitSound("https://github.com/Brololto/Reboundmoving/blob/main/Screen_Recording_20230404-140647_Chrome%20(online-audio-converter.com).mp3?raw=true","ReboundMovement_Lol")
