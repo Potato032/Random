@@ -198,7 +198,10 @@ spawnn:Play()
     mover.Parent = entityModel.PrimaryPart
     mover.Name = "A60Moving"
     mover.Volume = 4.2
+    mover.Looped = true
 	mover:Play()
+wait(15)
+mover.Looped = false
 
 
     -- Mute entity on spawn
@@ -309,7 +312,7 @@ spawnn:Play()
   
                           Hum.Health = 0  
   
-                          ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = Rebound  
+                          ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = A-60 
   
                             
   
