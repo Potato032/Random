@@ -197,11 +197,9 @@ spawnn:Play()
     local mover = GetGitSound("https://github.com/Potato032/Entt/blob/main/A60Idle.mp3?raw=true","Idle60")
     mover.Parent = entityModel.PrimaryPart
     mover.Name = "A60Moving"
-    mover.Volume = 4.2
+    mover.Volume = 2
     mover.Looped = true
 	mover:Play()
-wait(15)
-mover.Looped = false
 
 
     -- Mute entity on spawn
