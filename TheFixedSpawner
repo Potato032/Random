@@ -112,7 +112,7 @@ Spawner.createEntity = function(config)
                 entityModel.Name = config.CustomName
             end
 
-            entityModel:SetAttribute("NoAI", false)
+            entityModel:SetAttribute("IsCustomEntity", true)
             entityModel:SetAttribute("NoAI", false)
 
             -- EntityTable
@@ -262,7 +262,6 @@ Spawner.runEntity = function(entityTable)
  end 
                          Char:SetAttribute("IsDead", true)
 
-
                         -- Mute entity
 
                         warn("mute entity")
@@ -357,6 +356,10 @@ Spawner.runEntity = function(entityTable)
         
         entityModel:Destroy()
         task.spawn(entityTable.Debug.OnEntityDespawned)
+entityModel.PrimaryPart.Anchored = false 
+entityModel.PrimaryPart.CanCollide = false 
+         wait(6) 
+         entityModel:Destroy() 
     end
 end
 
