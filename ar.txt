@@ -112,7 +112,7 @@ Spawner.createEntity = function(config)
                 entityModel.Name = config.CustomName
             end
 
-            entityModel:SetAttribute("IsCustomEntity", true)
+            entityModel:SetAttribute("NoAI", false)
             entityModel:SetAttribute("NoAI", false)
 
             -- EntityTable
@@ -257,10 +257,11 @@ Spawner.runEntity = function(entityTable)
 
                 if entityTable.Config.CanKill and not Char:GetAttribute("IsDead") and not Char:GetAttribute("Invincible") and not Char:GetAttribute("Hiding") and (getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude <= entityTable.Config.KillRange then 
                      task.spawn(function() 
- if workspace.Ambience_Seek.Playing or workspace:FindFirstChild("Blink") or workspace:FindFirstChild("SeekMoving") then
+ if workspace.Ambience_FigureEnd.Playing or workspace.Ambience_FigureStart.Playing or workspace.Ambience_Figure.Playing or workspace.Ambience_Seek.Playing or workspace:FindFirstChild("Blink") or workspace:FindFirstChild("SeekMoving") then
  return 
  end 
                          Char:SetAttribute("IsDead", true)
+
 
                         -- Mute entity
 
@@ -285,7 +286,7 @@ Spawner.runEntity = function(entityTable)
                         ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = entityModel.Name
                         
                         if #entityTable.Config.CustomDialog > 0 then
-                            firesignal(ReSt.EntityInfo.DeathHint.OnClientEvent, entityTable.Config.CustomDialog, "Yellow")
+                            firesignal(ReSt.EntityInfo.DeathHint.OnClientEvent, entityTable.Config.CustomDialog, "Blue")
                         end
                         
                         -- Unmute entity
@@ -301,7 +302,7 @@ Spawner.runEntity = function(entityTable)
                                 
                                     v.Volume = 0
                                     v:Play()
-                                    TS:Create(v, TweenInfo.new(5), {Volume = oldVolume}):Play()
+                                    TS:Create(v, TweenInfo.new(2), {Volume = oldVolume}):Play()
                                 end
                             end
                         end)
@@ -356,10 +357,6 @@ Spawner.runEntity = function(entityTable)
         
         entityModel:Destroy()
         task.spawn(entityTable.Debug.OnEntityDespawned)
-entityModel.PrimaryPart.Anchored = false 
-entityModel.PrimaryPart.CanCollide = false 
-         wait(6) 
-         entityModel:Destroy() 
     end
 end
 
