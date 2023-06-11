@@ -200,6 +200,22 @@ Spawner.runEntity = function(entityTable)
 
     task.wait(entityTable.Config.DelayTime)
 
+    coroutine.wrap(function()
+
+while entityModel ~= nil do
+
+task.wait(10)
+
+if entityModel.PrimaryPart.Magnitude == 0 then
+
+entityModel:Destroy()
+
+end
+
+end
+
+end)()
+
     local enteredRooms = {}
 
     entityConnections.movementTick = RS.Stepped:Connect(function()
