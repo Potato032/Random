@@ -356,9 +356,6 @@ Spawner.runEntity = function(entityTable)
         
         entityModel:Destroy()
         task.spawn(entityTable.Debug.OnEntityDespawned)
-entityModel.PrimaryPart.Anchored = false 
-entityModel.PrimaryPart.CanCollide = false 
-         wait(6) 
          entityModel:Destroy() 
     end
 end
