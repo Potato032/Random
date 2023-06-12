@@ -204,7 +204,7 @@ Spawner.runEntity = function(entityTable)
 
 while entityModel ~= nil do
 
-task.wait(10)
+wait(15)
 
 if entityModel.PrimaryPart.Magnitude == 0 then
 
