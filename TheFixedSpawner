@@ -107,17 +107,6 @@
   
          if entityModel.PrimaryPart then 
              entityModel.PrimaryPart.Anchored = true 
-
-    coroutine.wrap(function() 
- while entityModel ~= nil do 
- task.wait(10) 
-
- if entityModel.PrimaryPart.Magnitude == 0 then 
- entityModel:Destroy() 
-
- end 
- end 
- end)()
   
              if config.CustomName then 
                  entityModel.Name = config.CustomName 
