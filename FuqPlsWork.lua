@@ -123,7 +123,7 @@ Spawner.createEntity = function(config)
 if entityModel and entityModel:IsA("Model") or entityModel:IsA("MeshPart") or entityModel:IsA("BasePart") and entityModel.PrimaryPart then
     local InitialPos = entityModel.PrimaryPart.Position
     local Tolerancy = 0.01
-    local MinTime = 5
+    local MinTime = 9
     local StoppedTime = 0
     local event = game:GetService("RunService").Stepped:Connect(function(deltaTime)
         local diferency = (InitialPos - entityModel.PrimaryPart.Position).Magnitude
