@@ -119,7 +119,27 @@ Spawner.createEntity = function(config)
         
         if entityModel.PrimaryPart then
             entityModel.PrimaryPart.Anchored = true
-entityModel.PrimaryPart.CanCollide = false
+
+if entityModel and entityModel:IsA("Model") or entityModel:IsA("MeshPart") or entityModel:IsA("BasePart") and entityModel.PrimaryPart then
+    local InitialPos = entityModel.PrimaryPart.Position
+    local Tolerancy = 0.01
+    local MinTime = 5
+    local StoppedTime = 0
+    local event = game:GetService("RunService").Stepped:Connect(function(deltaTime)
+        local diferency = (InitialPos - entityModel.PrimaryPart.Position).Magnitude
+        if diferency < Tolerancy then
+            StoppedTime += deltaTime
+        else
+            StoppedTime = 0
+        end
+        InitialPos = entityModel.PrimaryPart.Position
+        if StoppedTime >= MinTime then
+            event:Disconnect()
+            warn(tostring(entityModel.Name) .. " is stuck, destroying..")
+            entityModel:Destroy()
+        end
+    end)
+end
             
             if config.CustomName then
                 entityModel.Name = config.CustomName
@@ -190,16 +210,10 @@ Spawner.runEntity = function(entityTable)
     task.spawn(entityTable.Debug.OnEntitySpawned)
     local spawnn = Instance.new("Sound")
 spawnn.Parent = workspace
-spawnn.Name = "A60Spawn"
+spawnn.Name = "Waahh"
 spawnn.SoundId = "rbxassetid://9114221327"
 spawnn.Volume = 0
 spawnn:Play()
-    local mover = GetGitSound("https://github.com/Potato032/Entt/blob/main/A60Idle.mp3?raw=true","Idle60")
-    mover.Parent = entityModel.PrimaryPart
-    mover.Name = "A60Moving"
-    mover.Volume = 2
-    mover.Looped = true
-	mover:Play()
 
 
     -- Mute entity on spawn
@@ -310,7 +324,7 @@ spawnn:Play()
   
                           Hum.Health = 0  
   
-                          ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = A-60 
+                          ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = G26
   
                             
   
@@ -344,6 +358,11 @@ spawnn:Play()
     end)
 
     task.spawn(entityTable.Debug.OnEntityStartMoving)
+local mover = GetGitSound("https://github.com/Potato032/Entt/blob/main/G26MovingBad.mp3?raw=true","G26MoveBad")
+    mover.Parent = entityModel.PrimaryPart
+    mover.Name = "GMove"
+    mover.Volume = 4
+	mover:Play()
 
     -- Cycles
 
