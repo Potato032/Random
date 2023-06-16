@@ -134,7 +134,7 @@ if entityModel and entityModel:IsA("Model") or entityModel:IsA("MeshPart") or en
         end
         InitialPos = entityModel.PrimaryPart.Position
         if StoppedTime >= MinTime then
-            event:Disconnect()
+            event:Disconnect
             warn(tostring(entityModel.Name) .. " is stuck, destroying..")
             entityModel:Destroy()
         end
