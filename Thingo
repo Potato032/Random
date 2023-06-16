@@ -361,7 +361,7 @@ spawnn:Play()
 local mover = GetGitSound("https://github.com/Potato032/Entt/blob/main/G26MovingBad.mp3?raw=true","G26MoveBad")
     mover.Parent = entityModel.PrimaryPart
     mover.Name = "GMove"
-    mover.Volume = 4
+    mover.Volume = 7
 	mover:Play()
 
     -- Cycles
