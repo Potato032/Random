@@ -120,10 +120,10 @@ Spawner.createEntity = function(config)
         if entityModel.PrimaryPart then
             entityModel.PrimaryPart.Anchored = true
 
-if entityModel and entityModel:IsA("Model") or entityModel:IsA("MeshPart") or entityModel:IsA("BasePart") and entityModel.PrimaryPart then
+if entityModel then
     local InitialPos = entityModel.PrimaryPart.Position
     local Tolerancy = 0.01
-    local MinTime = 9
+    local MinTime = 5
     local StoppedTime = 0
     local event = game:GetService("RunService").Stepped:Connect(function(deltaTime)
         local diferency = (InitialPos - entityModel.PrimaryPart.Position).Magnitude
@@ -138,6 +138,9 @@ if entityModel and entityModel:IsA("Model") or entityModel:IsA("MeshPart") or en
             warn(tostring(entityModel.Name) .. " is stuck, destroying..")
             entityModel:Destroy()
         end
+    end)
+    entityModel.Destroyed:Connect(function()
+        event:Disconnect()
     end)
 end
 
