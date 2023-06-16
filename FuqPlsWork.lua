@@ -188,21 +188,6 @@ Spawner.runEntity = function(entityTable)
     entityModel:PivotTo(nodes[startNodeIndex].CFrame * CFrame.new(0, 0, startNodeOffset) + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0))
     entityModel.Parent = workspace
     task.spawn(entityTable.Debug.OnEntitySpawned)
-coroutine.wrap(function()
-    local spawn = Instance.new("Sound")
-spawn.Parent = workspace
-spawn.Name = "ReboundSpawn"
-spawn.SoundId = "rbxassetid://9114221327"
-spawn.Volume = 0
-spawn:Play()
-task.wait(0.2)
-    local move = GetGitSound("https://github.com/Brololto/Reboundmoving/blob/main/Screen_Recording_20230404-140647_Chrome%20(online-audio-converter.com).mp3?raw=true","ReboundMovement_Lol")
-    move.Parent = entityModel.PrimaryPart
-    move.Name = "ReboundMoving"
-    move.Volume = 7.3
-	move:Play()
-end)()
-
     -- Mute entity on spawn
 
     if CG:FindFirstChild("JumpscareGui") or (Plr.PlayerGui.MainUI.Death.HelpfulDialogue.Visible and not Plr.PlayerGui.MainUI.DeathPanelDead.Visible) then
@@ -345,6 +330,20 @@ end)()
     end)
 
     task.spawn(entityTable.Debug.OnEntityStartMoving)
+coroutine.wrap(function()
+    local spawn = Instance.new("Sound")
+spawn.Parent = workspace
+spawn.Name = "ReboundSpawn"
+spawn.SoundId = "rbxassetid://9114221327"
+spawn.Volume = 0
+spawn:Play()
+task.wait(0.2)
+    local move = GetGitSound("https://github.com/Brololto/Reboundmoving/blob/main/Screen_Recording_20230404-140647_Chrome%20(online-audio-converter.com).mp3?raw=true","ReboundMovement_Lol")
+    move.Parent = entityModel.PrimaryPart
+    move.Name = "ReboundMoving"
+    move.Volume = 7
+	move:Play()
+end)()
 
     -- Cycles
 
