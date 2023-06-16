@@ -120,7 +120,7 @@ Spawner.createEntity = function(config)
         if entityModel.PrimaryPart then
             entityModel.PrimaryPart.Anchored = true
 
-if entityModel then
+if entityModel and entityModel:IsA("Model") or entityModel:IsA("MeshPart") or entityModel:IsA("BasePart") and entityModel.PrimaryPart then
     local InitialPos = entityModel.PrimaryPart.Position
     local Tolerancy = 0.01
     local MinTime = 5
