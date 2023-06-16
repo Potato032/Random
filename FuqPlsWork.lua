@@ -119,7 +119,44 @@ Spawner.createEntity = function(config)
         
         if entityModel.PrimaryPart then
             entityModel.PrimaryPart.Anchored = true
-entityModel.PrimaryPart.CanCollide = false
+
+coroutine.wrap(function()
+local InitialPos = entityModel.PrimaryPart.Position
+local Tolerancy = 0.01
+local MinTime = 9
+local StoppedTime = 0
+local checkPosition = true
+
+local function onPrimaryPartChanged(property)
+    if property == "PrimaryPart" then
+        if not entityModel.PrimaryPart then
+            checkPosition = false
+        else
+            InitialPos = entityModel.PrimaryPart.Position
+            checkPosition = true
+        end
+    end
+end
+
+entityModel.Changed:Connect(onPrimaryPartChanged)
+
+local event = game:GetService("RunService").Stepped:Connect(function(deltaTime)
+    if checkPosition then
+        local diferency = (InitialPos - entityModel.PrimaryPart.Position).Magnitude
+        if diferency < Tolerancy then
+            StoppedTime += deltaTime
+        else
+            StoppedTime = 0
+        end
+        InitialPos = entityModel.PrimaryPart.Position
+        if StoppedTime >= MinTime then
+            event:Disconnect()
+            warn(tostring(entityModel.Name) .. " is stuck, destroying..")
+            entityModel:Destroy()
+        end
+    end
+end)
+end)()
             
             if config.CustomName then
                 entityModel.Name = config.CustomName
