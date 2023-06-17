@@ -142,6 +142,9 @@ Spawner.createEntity = function(config)
 
         end
 
+InitialPos = entityModel.PrimaryPart.Position
+
+
         if StoppedTime >= MinTime then
             warn(tostring(entityModel.Name) .. " is stuck, destroying..")
 
