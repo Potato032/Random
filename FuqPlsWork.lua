@@ -308,7 +308,7 @@ end)()
   
                           Hum.Health = 0  
   
-                          ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = Rebound  
+                          ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = "Rebound"  
   
                             
   
