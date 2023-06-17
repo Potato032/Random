@@ -227,6 +227,17 @@ Spawner.runEntity = function(entityTable)
                     if floorRay:IsDescendantOf(room) and not table.find(enteredRooms, room) then
                         enteredRooms[#enteredRooms + 1] = room
                         task.spawn(entityTable.Debug.OnEntityEnteredRoom, room)
+coroutine.wrap(function()
+local CameraShaker = require(game.ReplicatedStorage.CameraShaker)
+local camara = game.Workspace.CurrentCamera
+local camShake = CameraShaker.new(Enum.RenderPriority.Camera.Value, function(shakeCf)
+	camara.CFrame = camara.CFrame * shakeCf
+end)
+
+camShake:ShakeOnce(9,8,0.1,2,1,6)
+task.wait(0.6)
+camShake:ShakeOnce(9,8,0.1,2,1,6)
+end)()
 
                         -- Break lights
                         
