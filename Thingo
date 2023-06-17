@@ -305,7 +305,7 @@ spawnn:Play()
   
                           Hum.Health = 0  
   
-                          ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = G26
+                          ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = "G26"
   
                             
   
