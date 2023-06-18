@@ -1,3 +1,14 @@
+-- Github Sounds
+function GetGitSound(GithubSnd,SoundName)
+	local url=GithubSnd
+	if not isfile(SoundName..".mp3") then
+		writefile(SoundName..".mp3", game:HttpGet(url))
+	end
+	local sound=Instance.new("Sound")
+	sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
+	return sound
+end
+
 -- Services
 
 local Players = game:GetService("Players")
@@ -5,6 +16,7 @@ local ReSt = game:GetService("ReplicatedStorage")
 local RS = game:GetService("RunService")
 local TS = game:GetService("TweenService")
 local CG = game:GetService("CoreGui")
+local TweenService = game:GetService("TweenService")
 
 -- Variables
 
@@ -32,60 +44,60 @@ local Spawner = {}
 
 -- Misc Functions
 
-function onCharacterAdded(char)
-    Char, Hum = char, char:WaitForChild("Humanoid")
-end
-
-function getPlayerRoot()
-    return Char:FindFirstChild("HumanoidRootPart") or Char:FindFirstChild("Head")
-end
-
-function dragEntity(entityModel, pos, speed)
-    local entityConnections = EntityConnections[entityModel]
-
-    if entityConnections.movementNode then
-        entityConnections.movementNode:Disconnect()
-    end
-
-    entityConnections.movementNode = RS.Stepped:Connect(function(_, step)
-        if entityModel.Parent and not entityModel:GetAttribute("NoAI") then
-            local rootPos = entityModel.PrimaryPart.Position
-            local diff = Vector3.new(pos.X, pos.Y, pos.Z) - rootPos
-
-            if diff.Magnitude > 0.1 then
-                entityModel:PivotTo(CFrame.new(rootPos + diff.Unit * math.min(step * speed, diff.Magnitude)))
-            else
-                entityConnections.movementNode:Disconnect()
-            end
-        end
-    end)
-
-    repeat task.wait() until not entityConnections.movementNode.Connected
-end
-
-function loadSound(soundData)
-    local sound = Instance.new("Sound")
-    local soundId = tostring(soundData[1])
-    local properties = soundData[2]
-
-    for i, v in next, properties do
-        if i ~= "SoundId" and i ~= "Parent" then
-            sound[i] = v
-        end
-    end
-
-    if soundId:find("rbxasset://") then -- Custom audio
-        sound.SoundId = soundId
-    else
-        local numberId = soundId:gsub("%D", "")
-
-        sound.SoundId = "rbxassetid://".. numberId
-    end
-    
-    sound.Parent = workspace
-
-    return sound
-end
+function onCharacterAdded(char)  
+      Char, Hum = char, char:WaitForChild("Humanoid")  
+  end  
+  
+  function getPlayerRoot()  
+      return Char:FindFirstChild("HumanoidRootPart") or Char:FindFirstChild("Head")  
+  end  
+  
+  function dragEntity(entityModel, pos, speed)  
+      local entityConnections = EntityConnections[entityModel]  
+  
+      if entityConnections.movementNode then  
+          entityConnections.movementNode:Disconnect()  
+      end  
+  
+      entityConnections.movementNode = RS.Stepped:Connect(function(_, step)  
+          if entityModel.Parent and not entityModel:GetAttribute("NoAI") then  
+              local rootPos = entityModel.PrimaryPart.Position  
+              local diff = Vector3.new(pos.X, pos.Y, pos.Z) - rootPos  
+  
+              if diff.Magnitude > 0.1 then  
+                  entityModel:PivotTo(CFrame.new(rootPos + diff.Unit * math.min(step * speed, diff.Magnitude)))  
+              else  
+                  entityConnections.movementNode:Disconnect()  
+              end  
+          end  
+      end)  
+  
+      repeat task.wait() until not entityConnections.movementNode.Connected  
+  end  
+  
+  function loadSound(soundData)  
+      local sound = Instance.new("Sound")  
+      local soundId = tostring(soundData[1])  
+      local properties = soundData[2]  
+  
+      for i, v in next, properties do  
+          if i ~= "SoundId" and i ~= "Parent" then  
+              sound[i] = v  
+          end  
+      end  
+  
+      if soundId:find("rbxasset://") then -- Custom audio  
+          sound.SoundId = soundId  
+      else  
+          local numberId = soundId:gsub("%D", "")  
+  
+          sound.SoundId = "rbxassetid://".. numberId  
+      end  
+  
+      sound.Parent = workspace  
+  
+      return sound  
+  end 
 
 -- Functions
 
@@ -108,13 +120,32 @@ Spawner.createEntity = function(config)
         if entityModel.PrimaryPart then
             entityModel.PrimaryPart.Anchored = true
 
--- Not Here
-            
+if entityModel and entityModel:IsA("Model") or entityModel:IsA("MeshPart") or entityModel:IsA("BasePart") and entityModel.PrimaryPart then
+    local InitialPos = entityModel.PrimaryPart.Position
+    local Tolerancy = 0.01
+    local MinTime = 5
+    local StoppedTime = 0
+    local event = game:GetService("RunService").Stepped:Connect(function(deltaTime)
+        local diferency = (InitialPos - entityModel.PrimaryPart.Position).Magnitude
+        if diferency < Tolerancy then
+            StoppedTime += deltaTime
+        else
+            StoppedTime = 0
+        end
+        InitialPos = entityModel.PrimaryPart.Position
+        if StoppedTime >= MinTime then
+            event:Disconnect()
+            warn(tostring(entityModel.Name) .. " is stuck, destroying..")
+            entityModel:Destroy()
+        end
+    end)
+end
+
             if config.CustomName then
                 entityModel.Name = config.CustomName
             end
 
-            entityModel:SetAttribute("NoAI", false)
+            entityModel:SetAttribute("IsCustomEntity", true)
             entityModel:SetAttribute("NoAI", false)
 
             -- EntityTable
@@ -145,13 +176,13 @@ Spawner.runEntity = function(entityTable)
 
     for _, room in next, workspace.CurrentRooms:GetChildren() do
         local pathfindNodes = room:FindFirstChild("PathfindNodes")
-        
-        if pathfindNodes then
-            pathfindNodes = pathfindNodes:GetChildren()
-        else
             local fakeNode = Instance.new("Part")
             fakeNode.Name = "1"
             fakeNode.CFrame = room:WaitForChild("RoomExit").CFrame - Vector3.new(0, room.RoomExit.Size.Y / 2, 0)
+        
+        if pathfindNodes then
+            pathfindNodes = {fakeNode}
+        else
 
             pathfindNodes = {fakeNode}
         end
@@ -177,7 +208,6 @@ Spawner.runEntity = function(entityTable)
     entityModel:PivotTo(nodes[startNodeIndex].CFrame * CFrame.new(0, 0, startNodeOffset) + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0))
     entityModel.Parent = workspace
     task.spawn(entityTable.Debug.OnEntitySpawned)
-
     -- Mute entity on spawn
 
     if CG:FindFirstChild("JumpscareGui") or (Plr.PlayerGui.MainUI.Death.HelpfulDialogue.Visible and not Plr.PlayerGui.MainUI.DeathPanelDead.Visible) then
@@ -199,6 +229,35 @@ Spawner.runEntity = function(entityTable)
     -- Movement
 
     task.wait(entityTable.Config.DelayTime)
+coroutone.wrap(function()
+local Primary = entityModel.PrimaryPart
+
+if Primary then
+  
+local initialPosition = Primary.Position
+
+    local function checkIfStopped()
+
+      local currentPosition = primaryPart.Position
+
+      local distance = (initialPosition - currentPosition).Magnitude
+
+      if distance < 0.01 then
+        entityModel:Destroy()
+      else
+        initialPosition = currentPosition
+        
+        task.wait(5)
+        
+        checkIfStopped()
+        
+      end
+    end
+
+    checkIfStopped()
+  end
+end
+end)()
 
     local enteredRooms = {}
 
@@ -257,13 +316,12 @@ Spawner.runEntity = function(entityTable)
 
                 -- Kill player
 
-                if entityTable.Config.CanKill and not Char:GetAttribute("IsDead") and not Char:GetAttribute("Invincible") and not Char:GetAttribute("Hiding") and (getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude <= entityTable.Config.KillRange then 
-                     task.spawn(function() 
- if workspace.Ambience_FigureEnd.Playing or workspace.Ambience_FigureStart.Playing or workspace.Ambience_Figure.Playing or workspace.Ambience_Seek.Playing or workspace:FindFirstChild("Blink") or workspace:FindFirstChild("SeekMoving") then
- return 
- end 
-                         Char:SetAttribute("IsDead", true)
-
+                                                 if entityTable.Config.CanKill and not Char:GetAttribute("IsDead") and not Char:GetAttribute("Invincible") and not Char:GetAttribute("Hiding") and (getPlayerRoot().Position - entityModel.PrimaryPart.Position).Magnitude <= entityTable.Config.KillRange then  
+                      task.spawn(function()  
+  if workspace.Ambience_FigureEnd.Playing or workspace.Ambience_FigureStart.Playing or workspace.Ambience_Figure.Playing or workspace.Ambience_Seek.Playing or workspace:FindFirstChild("Blink") or workspace:FindFirstChild("SeekMoving") or workspace:FindFirstChild("Atumalaca") then  
+  return  
+  end  
+                          Char:SetAttribute("IsDead", true)
 
                         -- Mute entity
 
@@ -283,13 +341,13 @@ Spawner.runEntity = function(entityTable)
 
                         -- Death handling
                         
-                        task.spawn(entityTable.Debug.OnDeath)
-                        Hum.Health = 0
-                        ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = entityModel.Name
-                        
-                        if #entityTable.Config.CustomDialog > 0 then
-                            firesignal(ReSt.EntityInfo.DeathHint.OnClientEvent, entityTable.Config.CustomDialog, "Blue")
-                        end
+                                                 task.spawn(entityTable.Debug.OnDeath) 
+                         Hum.Health = 0 
+                         ReSt.GameStats["Player_".. Plr.Name].Total.DeathCause.Value = entityModel.Name 
+  
+                         if #entityTable.Config.CustomDialog > 0 then 
+                             firesignal(ReSt.EntityInfo.DeathHint.OnClientEvent, entityTable.Config.CustomDialog, "Blue") 
+                          end 
                         
                         -- Unmute entity
 
@@ -315,6 +373,8 @@ Spawner.runEntity = function(entityTable)
     end)
 
     task.spawn(entityTable.Debug.OnEntityStartMoving)
+
+-- No Rebound Sound here
 
     -- Cycles
 
@@ -357,10 +417,18 @@ Spawner.runEntity = function(entityTable)
             v:Disconnect()
         end
         
-        entityModel:Destroy()
         task.spawn(entityTable.Debug.OnEntityDespawned)
+
+coroutine.wrap(function()
+if entityModel.PrimaryPart.Anchored and entityModel.PrimaryPart.CanCollide then
+        entityModel.PrimaryPart.Anchored = false
+        entityModel.PrimaryPart.CanCollide = false
+        task.wait(6)
+        entityModel:Destroy()
     end
 end
+end
+end)()
 
 Spawner.runJumpscare = function(config)
     -- Variables
