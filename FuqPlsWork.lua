@@ -234,9 +234,7 @@ local camShake = CameraShaker.new(Enum.RenderPriority.Camera.Value, function(sha
 	camara.CFrame = camara.CFrame * shakeCf
 end)
 
-camShake:ShakeOnce(9,8,0.1,2,1,6)
-task.wait(0.6)
-camShake:ShakeOnce(9,8,0.1,2,1,6)
+camShake:ShakeOnce(6,7,0.1,1,0.5,4,0.2)
 end)()
 
                         -- Break lights
