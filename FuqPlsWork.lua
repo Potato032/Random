@@ -50,30 +50,7 @@ function onCharacterAdded(char)
   
   function getPlayerRoot()  
       return Char:FindFirstChild("HumanoidRootPart") or Char:FindFirstChild("Head")  
-  end  
-  
-  function dragEntity(entityModel, pos, speed)  
-      local entityConnections = EntityConnections[entityModel]  
-  
-      if entityConnections.movementNode then  
-          entityConnections.movementNode:Disconnect()  
-      end  
-  
-      entityConnections.movementNode = RS.Stepped:Connect(function(_, step)  
-          if entityModel.Parent and not entityModel:GetAttribute("NoAI") then  
-              local rootPos = entityModel.PrimaryPart.Position  
-              local diff = Vector3.new(pos.X, pos.Y, pos.Z) - rootPos  
-  
-              if diff.Magnitude > 0.1 then  
-                  entityModel:PivotTo(CFrame.new(rootPos + diff.Unit * math.min(step * speed, diff.Magnitude)))  
-              else  
-                  entityConnections.movementNode:Disconnect()  
-              end  
-          end  
-      end)  
-  
-      repeat task.wait() until not entityConnections.movementNode.Connected  
-  end  
+  end
   
   function loadSound(soundData)  
       local sound = Instance.new("Sound")  
