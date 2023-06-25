@@ -166,6 +166,22 @@ Spawner.runEntity = function(entityTable)
     entityModel:PivotTo(nodes[startNodeIndex].CFrame * CFrame.new(0, 0, startNodeOffset) + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0))
     entityModel.Parent = workspace
     task.spawn(entityTable.Debug.OnEntitySpawned)
+function dragEntity(entityModel, pos, speed)
+            local newPosition = pos
+-- Calculate the distance between the start and end position of the part
+local distance = (newPosition - entityModel.PrimaryPart.Position).Magnitude
+
+local duration = distance / speed
+
+-- Create a new tween using the TweenService
+local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear)
+local tween = game:GetService("TweenService"):Create(entityModel.PrimaryPart, tweenInfo, {Position = newPosition})
+
+-- Start the tween
+tween:Play()
+            tween.Completed:Wait()
+end
+
     -- Mute entity on spawn
 
     if CG:FindFirstChild("JumpscareGui") or (Plr.PlayerGui.MainUI.Death.HelpfulDialogue.Visible and not Plr.PlayerGui.MainUI.DeathPanelDead.Visible) then
