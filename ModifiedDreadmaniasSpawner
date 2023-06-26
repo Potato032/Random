@@ -740,6 +740,7 @@ local Entities = {
 			Sound2.SoundId = "rbxassetid://1228230799"
 			Sound2.PlaybackSpeed = 0.9
 			Sound2.Looped = true
+    Sound2.Volume = 1.9
 			Sound2:Play()
 
 			local Sound3 = Instance.new("Sound", Eyes)
@@ -765,7 +766,7 @@ local Entities = {
 			local Light2 = Instance.new("PointLight", Eyes)
 
 			Light2.Brightness = 3
-			Light2.Color = Color3.fromRGB(235,236,238)
+			Light2.Color = Color3.fromRGB(250,198,238)
 			Light2.Enabled = true
 			Light2.Range = 50
 			Light2.Shadows = false
