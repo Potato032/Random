@@ -747,7 +747,7 @@ local Entities = {
 			Sound3.SoundId = "rbxassetid://9126213993"
 			Sound3.PlaybackSpeed = 1.15
 
-			Eyes.Name = "Lookman"
+			Eyes.Name = "Glitched_Eyes"
 
 			Eyes.Anchored = true
 			Eyes.CanCollide = false
