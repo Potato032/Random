@@ -691,11 +691,11 @@ local Entities = {
 
 			local EyesParticle = Instance.new("ParticleEmitter", Attachment)
 			EyesParticle.LightInfluence = 0
-			EyesParticle.Brightness = 1.26
+			EyesParticle.Brightness = 1.29
 			EyesParticle.Size = NumberSequence.new(4)
 			EyesParticle.Texture = GitPNG("https://github.com/Potato032/Recreation/blob/main/396%20Sem%20T%C3%ADtulo_20230625214207.png?raw=true","GlitchedEyes")
 			EyesParticle.Color = ColorSequence.new{
-				ColorSequenceKeypoint.new(0, Color3.fromRGB(255,255,255)),
+				ColorSequenceKeypoint.new(0, Color3.fromRGB(255,211,255)),
 				ColorSequenceKeypoint.new(0.46, Color3.fromRGB(255,255,255)),
 				ColorSequenceKeypoint.new(0.509, Color3.fromRGB(129,97,244)),
 				ColorSequenceKeypoint.new(0.612, Color3.fromRGB(17, 0, 255)),
@@ -721,7 +721,7 @@ local Entities = {
 			EyesParticle.LockedToPart = true
 			EyesParticle.VelocityInheritance = 0.5
 			EyesParticle.Transparency = NumberSequence.new{
-				NumberSequenceKeypoint.new(0, .994),
+				NumberSequenceKeypoint.new(0, .178),
 				NumberSequenceKeypoint.new(0.496, .637),
 				NumberSequenceKeypoint.new(1, 1),
 			}
@@ -732,7 +732,7 @@ local Entities = {
 
 			local flange = Instance.new("FlangeSoundEffect", Sound)
 			flange.Depth = 0.475
-			flange.Mix = 0.97
+			flange.Mix = 0.95
 			flange.Rate = 2
 
 			local Sound2 = Instance.new("Sound", Eyes)
@@ -743,7 +743,7 @@ local Entities = {
 
 			local Sound3 = Instance.new("Sound", Eyes)
 			Sound3.SoundId = "rbxassetid://9126213993"
-			Sound3.PlaybackSpeed = 1.25
+			Sound3.PlaybackSpeed = 1.15
 
 			Eyes.Name = "Lookman"
 
@@ -755,7 +755,7 @@ local Entities = {
 
 			local Light1 = Instance.new("PointLight", Eyes)
 
-			Light1.Brightness = 3.2
+			Light1.Brightness = 4
 			Light1.Color = Color3.fromRGB(15,50,99)
 			Light1.Enabled = true
 			Light1.Range = 60
@@ -766,7 +766,7 @@ local Entities = {
 			Light2.Brightness = 3
 			Light2.Color = Color3.fromRGB(235,236,238)
 			Light2.Enabled = true
-			Light2.Range = 25
+			Light2.Range = 50
 			Light2.Shadows = false
 
 			coroutine.wrap(function()
