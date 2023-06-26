@@ -691,7 +691,7 @@ local Entities = {
 
 			local EyesParticle = Instance.new("ParticleEmitter", Attachment)
 			EyesParticle.LightInfluence = 1
-			EyesParticle.Brightness = 1.29
+			EyesParticle.Brightness = 1.50
 			EyesParticle.Size = NumberSequence.new(4)
 			EyesParticle.Texture = GitPNG("https://github.com/Potato032/Recreation/blob/main/396%20Sem%20T%C3%ADtulo_20230625214207.png?raw=true","GlitchedEyes")
 			EyesParticle.Color = ColorSequence.new{
@@ -758,7 +758,7 @@ local Entities = {
 			local Light1 = Instance.new("PointLight", Eyes)
 
 			Light1.Brightness = 4
-			Light1.Color = Color3.fromRGB(15,50,99)
+			Light1.Color = Color3.fromRGB(221,50,99)
 			Light1.Enabled = true
 			Light1.Range = 60
 			Light1.Shadows = true
@@ -766,7 +766,7 @@ local Entities = {
 			local Light2 = Instance.new("PointLight", Eyes)
 
 			Light2.Brightness = 3
-			Light2.Color = Color3.fromRGB(250,198,238)
+			Light2.Color = Color3.fromRGB(250,58,28)
 			Light2.Enabled = true
 			Light2.Range = 50
 			Light2.Shadows = false
