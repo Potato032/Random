@@ -678,7 +678,7 @@ local Entities = {
 
 			Spark.Drag = 15
 			Spark.LockedToPart = true
-			Spark.VelocityInheritance = 0.5
+			Spark.VelocityInheritance = 0.8
 
 			Spark.Lifetime = NumberRange.new(0.5, 2)
 			Spark.Rate = 25
@@ -727,8 +727,8 @@ local Entities = {
 			}
 
 			Sound.SoundId = "rbxassetid://1168009240"
-			Sound.PlaybackSpeed = 0.3
-    Sound.Volume = 2
+			Sound.PlaybackSpeed = 0.7
+    Sound.Volume = 2.1
 			Sound:Play()
 
 			local flange = Instance.new("FlangeSoundEffect", Sound)
@@ -740,7 +740,7 @@ local Entities = {
 			Sound2.SoundId = "rbxassetid://1228230799"
 			Sound2.PlaybackSpeed = 0.9
 			Sound2.Looped = true
-    Sound2.Volume = 1.9
+    Sound2.Volume = 3
 			Sound2:Play()
 
 			local Sound3 = Instance.new("Sound", Eyes)
@@ -758,7 +758,7 @@ local Entities = {
 			local Light1 = Instance.new("PointLight", Eyes)
 
 			Light1.Brightness = 4
-			Light1.Color = Color3.fromRGB(221,50,99)
+			Light1.Color = Color3.fromRGB(5,250,254)
 			Light1.Enabled = true
 			Light1.Range = 60
 			Light1.Shadows = true
@@ -766,7 +766,7 @@ local Entities = {
 			local Light2 = Instance.new("PointLight", Eyes)
 
 			Light2.Brightness = 3
-			Light2.Color = Color3.fromRGB(250,58,28)
+			Light2.Color = Color3.fromRGB(210,1,110)
 			Light2.Enabled = true
 			Light2.Range = 50
 			Light2.Shadows = false
@@ -787,11 +787,15 @@ local Entities = {
 
 					if OnScreen then
 						if workspace:Raycast(Camera.CFrame.Position, Eyes.Position - Camera.CFrame.Position, Parameters) == nil then
-							game.Players.LocalPlayer.Character.Humanoid.Health -= Damage
+						game.Players.LocalPlayer.Character.Humanoid.Health -= Damage
+if game.Players.LocalPlayer.Character.Humanoid.Health <= 0 then
+firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"You died to these eyes...", "Remember what you learned from Eyes!", "Try not to look at him. It is stronger than Eyes."}, "Blue")
+game:GetService("ReplicatedStorage").GameStats["Player_".. game.Players.LocalPlayer.Name].Total.DeathCause.Value = "Glitched Eyes"
+end
 						end
 					end
 
-					task.wait(.175)
+					task.wait(0.2175)
 				end
 			end)()
 			game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait()
