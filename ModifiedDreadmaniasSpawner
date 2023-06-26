@@ -690,7 +690,7 @@ local Entities = {
 			Spark.Enabled = true
 
 			local EyesParticle = Instance.new("ParticleEmitter", Attachment)
-			EyesParticle.LightInfluence = 0
+			EyesParticle.LightInfluence = 1
 			EyesParticle.Brightness = 1.29
 			EyesParticle.Size = NumberSequence.new(4)
 			EyesParticle.Texture = GitPNG("https://github.com/Potato032/Recreation/blob/main/396%20Sem%20T%C3%ADtulo_20230625214207.png?raw=true","GlitchedEyes")
@@ -722,7 +722,7 @@ local Entities = {
 			EyesParticle.VelocityInheritance = 0.5
 			EyesParticle.Transparency = NumberSequence.new{
 				NumberSequenceKeypoint.new(0, .178),
-				NumberSequenceKeypoint.new(0.496, .637),
+				NumberSequenceKeypoint.new(0.901, .637),
 				NumberSequenceKeypoint.new(1, 1),
 			}
 
