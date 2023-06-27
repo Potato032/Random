@@ -1,14 +1,19 @@
 -- // 
   
  --\\ 
-  
+ coroutine.wrap(function()
  function GitPNG(GithubImg,ImageName) 
          local url=GithubImg 
          if not isfile(ImageName..".png") then 
                  writefile(ImageName..".png", game:HttpGet(url)) 
          end 
          return (getcustomasset or getsynasset)(ImageName..".png") 
- end 
+ end
+
+task.wait(6.1)
+
+firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'Credits for Dreadmania for Eyes Spawner',true,4)
+end)()
   
  local v1 = game.Players.LocalPlayer.PlayerGui.MainUI 
  local u2 = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game) 
