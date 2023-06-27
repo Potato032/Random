@@ -10,9 +10,9 @@
          return (getcustomasset or getsynasset)(ImageName..".png") 
  end
 
-task.wait(6.1)
+task.wait(1)
 
-firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'Credits for Dreadmania for Eyes Spawner',true,4)
+firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'Credits for Dreadmania for Eyes Spawner',true,1.6)
 end)()
   
  local v1 = game.Players.LocalPlayer.PlayerGui.MainUI 
