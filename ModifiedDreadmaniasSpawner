@@ -800,7 +800,7 @@ end)()
                                                  end 
                                          end 
   
-                                         task.wait(0.2175) 
+                                         task.wait(0.1298) 
                                  end 
                          end)() 
                          game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait() 
