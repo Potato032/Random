@@ -771,7 +771,7 @@ end)()
                          local Light2 = Instance.new("PointLight", Eyes) 
   
                          Light2.Brightness = 3 
-                         Light2.Color = Color3.fromRGB(110,1,110) 
+                         Light2.Color = Color3.fromRGB(110,1,98) 
                          Light2.Enabled = true 
                          Light2.Range = 50 
                          Light2.Shadows = false 
@@ -800,7 +800,7 @@ end)()
                                                  end 
                                          end 
   
-                                         task.wait(0.1298) 
+                                         task.wait(0.1873) 
                                  end 
                          end)() 
                          game.ReplicatedStorage.GameData.LatestRoom.Changed:Wait() 
