@@ -166,14 +166,6 @@ Spawner.runEntity = function(entityTable)
     entityModel:PivotTo(nodes[startNodeIndex].CFrame * CFrame.new(0, 0, startNodeOffset) + Vector3.new(0, 3.5 + entityTable.Config.HeightOffset, 0))
     entityModel.Parent = workspace
     task.spawn(entityTable.Debug.OnEntitySpawned)
-coroutine.wrap(function()
-local plrr = game.Players.LocalPlayer
-if plrr.Character ~= nil then
-							if plrr.Character:FindFirstChild("HumanoidRootPart") and (entityModel.PrimaryPart.Position - plrr.Character:FindFirstChild("HumanoidRootPart").Position).magnitude <= 70 then
-								camShake:ShakeOnce(9,7.5,0.2,2,1,5)
-							end
-						end
-       end)()
 
 function dragEntity(entityModel, pos, speed)
             local newPosition = pos
