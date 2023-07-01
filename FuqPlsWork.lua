@@ -169,7 +169,7 @@ Spawner.runEntity = function(entityTable)
 coroutine.wrap(function()
 local plrr = game.Players.LocalPlayer
 if plrr.Character ~= nil then
-							if plrr.Character:FindFirstChild("HumanoidRootPart") and (entityModel.Position - plrr.Character:FindFirstChild("HumanoidRootPart").Position).magnitude <= 70 then
+							if plrr.Character:FindFirstChild("HumanoidRootPart") and (entityModel.PrimaryPart.Position - plrr.Character:FindFirstChild("HumanoidRootPart").Position).magnitude <= 70 then
 								camShake:ShakeOnce(9,7.5,0.2,2,1,5)
 							end
 						end
