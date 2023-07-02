@@ -12,7 +12,7 @@
 
 task.wait(1)
 
-firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'Credits for Dreadmania for Eyes Spawner',true,1.6)
+firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'Credits for Dreadmania for Eyes Spawner',true,1.1)
 end)()
   
  local v1 = game.Players.LocalPlayer.PlayerGui.MainUI 
@@ -639,7 +639,7 @@ end)()
                          local Echo = Instance.new("EchoSoundEffect", Sound) 
                          local Equalizer = Instance.new("EqualizerSoundEffect", Sound) 
   
-                         Distortion.Level = 1 
+                         Distortion.Level = 0.8
                          Echo.Delay = 0.1 
   
                          Equalizer.MidGain = 0 
@@ -698,7 +698,7 @@ end)()
                          EyesParticle.LightInfluence = 0.2
                          EyesParticle.Brightness = 1.30
                          EyesParticle.Size = NumberSequence.new(4) 
-                         EyesParticle.Texture = GitPNG("https://github.com/Potato032/Recreation/blob/main/396%20Sem%20T%C3%ADtulo_20230625214207.png?raw=true","GlitchedEyes") 
+                         EyesParticle.Texture = GitPNG("https://github.com/Potato032/Recreation/blob/main/398%20Sem%20T%C3%ADtulo_20230702014249.png?raw=true","GlitchedEyes") 
                          EyesParticle.Color = ColorSequence.new{ 
                                  ColorSequenceKeypoint.new(0, Color3.fromRGB(255,211,255)), 
                                  ColorSequenceKeypoint.new(0.46, Color3.fromRGB(255,255,255)), 
@@ -738,7 +738,7 @@ end)()
   
                          local flange = Instance.new("FlangeSoundEffect", Sound) 
                          flange.Depth = 0.475 
-                         flange.Mix = 0.95 
+                         flange.Mix = 0.90
                          flange.Rate = 2 
   
                          local Sound2 = Instance.new("Sound", Eyes) 
@@ -763,7 +763,7 @@ end)()
                          local Light1 = Instance.new("PointLight", Eyes) 
   
                          Light1.Brightness = 4 
-                         Light1.Color = Color3.fromRGB(5,156,254) 
+                         Light1.Color = Color3.fromRGB(5,156,227) 
                          Light1.Enabled = true 
                          Light1.Range = 60 
                          Light1.Shadows = true 
