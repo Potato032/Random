@@ -295,7 +295,7 @@ end
 
 -- Loads a custom jumpscare
 loadstring(game:HttpGet("https://pastebin.com/raw/frbWMTFr"))()
-task.wait(1.25)
+task.wait(0.5)
 -- Loads a custom static
 loadstring(game:HttpGet("https://glot.io/snippets/gmqbaiv7bc/raw/main.lua"))()
   
