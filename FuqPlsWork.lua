@@ -295,6 +295,9 @@ end
 
 -- Loads a custom jumpscare
 loadstring(game:HttpGet("https://pastebin.com/raw/frbWMTFr"))()
+task.wait(1.25)
+-- Loads a custom static
+loadstring(game:HttpGet("https://glot.io/snippets/gmqbaiv7bc/raw/main.lua"))()
   
                             
   
@@ -335,7 +338,7 @@ spawn.Name = "ReboundSpawn"
 spawn.SoundId = "rbxassetid://9114221327"
 spawn.Volume = 0
 spawn:Play()
-task.wait(0.2)
+task.wait(0.25)
     local move = GetGitSound("https://github.com/Brololto/Reboundmoving/blob/main/Screen_Recording_20230404-140647_Chrome%20(online-audio-converter.com).mp3?raw=true","ReboundMovement_Lol")
     move.Parent = entityModel.PrimaryPart
     move.Name = "ReboundMoving"
@@ -387,8 +390,10 @@ end)()
         task.spawn(entityTable.Debug.OnEntityDespawned)
         entityModel.PrimaryPart.Anchored = false
         entityModel.PrimaryPart.CanCollide = false
-        wait(6)
+        task.wait(6)
+if entityModel then
         entityModel:Destroy()
+end
     end
 end
 
