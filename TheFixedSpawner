@@ -342,17 +342,22 @@ end
 
     -- Destroy
 
-    if not entityModel:GetAttribute("NoAI") then
-        for _, v in next, entityConnections do
-            v:Disconnect()
-        end
-        
-        entityModel:Destroy()
-        task.spawn(entityTable.Debug.OnEntityDespawned)
-    end
-end
-
-Spawner.runJumpscare = function(config)
+        if not entityModel:GetAttribute("NoAI") then 
+         for _, v in next, entityConnections do 
+             v:Disconnect() 
+         end 
+  
+         task.spawn(entityTable.Debug.OnEntityDespawned) 
+         entityModel.PrimaryPart.Anchored = false 
+         entityModel.PrimaryPart.CanCollide = false 
+         task.wait(6) 
+ if entityModel then 
+         entityModel:Destroy() 
+ end 
+     end 
+ end 
+  
+ Spawner.runJumpscare = function(config)
     -- Variables
 
     local image1 = LoadCustomAsset(config.Image1)
